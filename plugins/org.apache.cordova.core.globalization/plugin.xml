@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="org.apache.cordova.core.globalization"
+      version="0.1.0">
+    <name>Globalization</name>
+
+    <js-module src="www/GlobalizationError.js" name="GlobalizationError">
+        <clobbers target="window.GlobalizationError" />
+    </js-module>
+    
+    <js-module src="www/globalization.js" name="globalization">
+        <clobbers target="navigator.globalization" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Globalization" value="org.apache.cordova.core.globalization"/>
+        </config-file>
+
+        <source-file src="src/android/Globalization.java" target-dir="src/org/apache/cordova/core" />
+        <source-file src="src/android/GlobalizationError.java" target-dir="src/org/apache/cordova/core" />
+    </platform>
+       
+   <!-- ios -->
+   <platform name="ios">    
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="ios-package" value="CDVGlobalization" /> 
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVGlobalization.h" />
+        <source-file src="src/ios/CDVGlobalization.m" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="wp-package" value="Globalization"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/Globalization.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="wp-package" value="Globalization"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/Globalization.cs" />
+    </platform>
+
+</plugin>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="org.apache.cordova.core.device-motion"
+      version="0.1.0">
+	
+    <name>Device Motion</name>
+
+    <js-module src="www/Acceleration.js" name="Acceleration">
+        <clobbers target="Acceleration" />
+    </js-module>
+    
+    <js-module src="www/accelerometer.js" name="accelerometer">
+        <clobbers target="navigator.accelerometer" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">
+	    
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="android-package" value="org.apache.cordova.core.AccelListener"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
+    
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+        
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="ios-package" value="CDVAccelerometer"/>
+            </feature>
+        </config-file>
+            
+        <header-file src="src/ios/CDVAccelerometer.h" />
+        <source-file src="src/ios/CDVAccelerometer.m" />
+        
+    </platform>
+
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="Accelerometer" value="Accelerometer"/>
+        </config-file>
+        <source-file src="src/blackberry10/index.js" target-dir="Accelerometer" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="wp-package" value="Accelerometer"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Accelerometer.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="wp-package" value="Accelerometer"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Accelerometer.cs" />
+    </platform>
+    
+</plugin>

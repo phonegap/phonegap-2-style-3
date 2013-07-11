@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="org.apache.cordova.core.network-information"
+      version="0.1.0">
+
+    <name>Network Information</name>
+    
+    <js-module src="www/network.js" name="network">
+        <clobbers target="navigator.connection" />
+        <clobbers target="navigator.network.connection" />
+    </js-module>
+
+    <js-module src="www/Connection.js" name="Connection">
+        <clobbers target="Connection" />
+    </js-module>
+            
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="android-package" value="org.apache.cordova.core.NetworkManager"/>
+            </feature>   
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+
+        <source-file src="src/android/NetworkManager.java" target-dir="src/org/apache/cordova/core" />
+        
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">    
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="ios-package" value="CDVConnection" /> 
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/CDVConnection.h" />
+        <source-file src="src/ios/CDVConnection.m" />
+        <header-file src="src/ios/CDVReachability.h" />
+	    <source-file src="src/ios/CDVReachability.m" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="wp-package" value="NetworkStatus"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_NETWORKING" />
+        </config-file>
+
+        <source-file src="src/wp/NetworkStatus.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NetworkStatus">
+                <param name="wp-package" value="NetworkStatus"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_NETWORKING" />
+        </config-file>
+
+        <source-file src="src/wp/NetworkStatus.cs" />
+    </platform>
+
+</plugin>

@@ -2,12 +2,12 @@
   "name":"pgapp",
   "lib": {
     "android": {
-      "uri": "/Users/stevengill/Documents/repo/coho/cordova-android",
+      "uri": "http://people.apache.org/~steven/cordova-android.tar.gz",
       "version": "dev",
       "id": "cordova-android-dev"
     },
     "ios": {
-      "uri": "/Users/stevengill/Documents/repo/coho/cordova-ios/",
+      "uri": "http://people.apache.org/~steven/cordova-android.tar.gz",
       "version": "dev",
       "id": "cordova-ios-dev"
     }
